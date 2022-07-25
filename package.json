@@ -1,8 +1,8 @@
 {
-  "name": "iheartmachakos",
+  "name": "master-math-mentor",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/app.js",
+  "main": "./src/main.ts",
   "scripts": {
     "serve": "webpack serve --config webpack.config.js",
     "dev": "webpack build --config webpack.config.js",
