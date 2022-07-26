@@ -31,36 +31,33 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
+
+            <div class="row">
+              <div class="row-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                  <a
+                    class="list-group-item list-group-item-action active"
+                    id="list-html-list"
+                    data-toggle="list"
+                    href="#list-html"
+                    role="tab"
+                    aria-controls="html"
+                    >HTml
+                  </a>
+
+                  <a
+                    class="list-group-item list-group-item-action"
+                    id="list-json-list"
+                    data-toggle="list"
+                    href="#list-json"
+                    role="tab"
+                    aria-controls="json"
+                    >Json
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-
-    <div class="row">
-      <div class="row-4">
-        <div
-         class="list-group" 
-         id="list-tab" 
-         role="tablist"
-         >
-        <a 
-          class="list-group-item list-group-item-action active" 
-          id="list-html-list"
-          data-toggle="list" 
-          href="#list-html"
-          role="tab" 
-          aria-controls="html">HTml
-        </a>
-
-        <a 
-          class="list-group-item list-group-item-action" 
-          id="list-json-list" 
-          data-toggle="list"
-           href="#list-json" 
-           role="tab" 
-           aria-controls="json">Json
-        </a>
-        </div>
-      </div>
-    </div>
-    
           <div class="modal-body">...</div>
           <div class="modal-footer">
             <button
@@ -78,6 +75,4 @@
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
