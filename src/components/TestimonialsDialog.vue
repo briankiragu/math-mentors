@@ -22,46 +22,6 @@
         <div class="modal-content">
           <!-- Modal header -->
           <div class="modal-header">
-<<<<<<< HEAD
-            <h5 class="modal-title" id="edittestimonialModalLabel">Edit</h5>
-
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-            <div class="row">
-              <div class="row-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                  <a
-                    class="list-group-item list-group-item-action active"
-                    id="list-html-list"
-                    data-toggle="list"
-                    href="#list-html"
-                    role="tab"
-                    aria-controls="html"
-                    >HTml
-                  </a>
-
-                  <a
-                    class="list-group-item list-group-item-action"
-                    id="list-json-list"
-                    data-toggle="list"
-                    href="#list-json"
-                    role="tab"
-                    aria-controls="json"
-                    >Json
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-body">...</div>
-=======
             <h5 class="modal-title" id="editTestimonialsModalLabel">Edit</h5>
           </div>
 
@@ -97,7 +57,6 @@
           </div>
 
           <!-- Modal footer -->
->>>>>>> dec5219569556cc3188f4436cbefb004a7228f75
           <div class="modal-footer">
             <button
               type="button"
@@ -114,9 +73,6 @@
   </div>
 </template>
 
-<<<<<<< HEAD
-<script setup lang="ts"></script>
-=======
 <script setup lang="ts">
 import { ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
@@ -162,4 +118,3 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   currentActiveTab.value = tab;
 };
 </script>
->>>>>>> dec5219569556cc3188f4436cbefb004a7228f75
