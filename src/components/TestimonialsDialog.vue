@@ -28,7 +28,7 @@
           <!-- Modal body -->
           <div class="modal-body">
             <!-- Tab headings -->
-            <header>
+            <header class="mb-2">
               <button
                 class="btn btn-primary mr-1"
                 @click.prevent="handleTabClick('HTML')"
@@ -90,6 +90,7 @@ const testimonials = ref<ITestimonial[]>([
     author: 'Brian',
     author_profession: 'coder',
     created_at: '26-07-22',
+    updated_at: null,
   },
   {
     id: 2,
@@ -97,6 +98,7 @@ const testimonials = ref<ITestimonial[]>([
     author: 'Nick',
     author_profession: 'coder',
     created_at: '26-07-22',
+    updated_at: '26-07-22',
   },
   {
     id: 3,
@@ -104,6 +106,7 @@ const testimonials = ref<ITestimonial[]>([
     author: 'Lawrence',
     author_profession: 'manager',
     created_at: '26-07-22',
+    updated_at: null,
   },
 ]);
 

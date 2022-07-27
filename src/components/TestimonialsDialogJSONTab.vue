@@ -1,5 +1,13 @@
 <template>
-  <h1>This is the JSON tab</h1>
+  <div>
+    <div
+      v-for="testimonial of testimonials"
+      :key="`testimonial-${testimonial.id}-json`"
+      class="mb-2"
+    >
+      {{ testimonial }}
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
