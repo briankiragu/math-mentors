@@ -49,19 +49,34 @@
 <script setup lang="ts">
 import { ITestimonial } from '@/interfaces';
 
+// Incoming props from the parent.
 const props = defineProps({
   testimonials: { type: Array as () => ITestimonial[], required: true },
 });
 
+// When a testimonial(s) is updated, emit an event to the parent
+// to change the prop themeselves. Props should NOT be edited
+// from child components.
 const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
+/**
+ * When a user updates a field in the form, look for the testimonial
+ * within the props and update the relevant field.
+ *
+ * @param {Event} event The event object.
+ * @param {number} id The ID of the testimonial to update.
+ * @param {string} field The field in the testimonial to update.
+ *
+ * @returns {void}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ */
 const handleInput = (
   event: Event,
   id: number,
   field: 'author' | 'author_profession' | 'message'
-) => {
+): void => {
   // Find the testimonial that we are editing.
   const testimonial = props.testimonials.find(
     (testimonial) => testimonial.id === id

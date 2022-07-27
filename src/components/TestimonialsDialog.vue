@@ -89,7 +89,7 @@ const testimonials = ref<ITestimonial[]>([
     message: 'This is the message',
     author: 'Brian',
     author_profession: 'coder',
-    created_at: '26-07-22',
+    created_at: new Date().toISOString(),
     updated_at: null,
   },
   {
@@ -97,15 +97,15 @@ const testimonials = ref<ITestimonial[]>([
     message: 'This is the message',
     author: 'Nick',
     author_profession: 'coder',
-    created_at: '26-07-22',
-    updated_at: '26-07-22',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
   {
     id: 3,
     message: 'This is the message',
     author: 'Lawrence',
     author_profession: 'manager',
-    created_at: '26-07-22',
+    created_at: new Date().toISOString(),
     updated_at: null,
   },
 ]);
