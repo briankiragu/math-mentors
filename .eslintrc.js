@@ -1,6 +1,5 @@
 module.exports = {
   settings: {
-    // 'import/extensions': ['.js', '.ts', '.jsx', '.tsx'],
     alias: {
       map: [['@', path.resolve(__dirname, 'src')]],
     },
