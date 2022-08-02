@@ -38,5 +38,8 @@ const handleInput = (e: Event) => {
 
   // Parse the data into JSON.
   const data = JSON.parse(input);
+
+  // Emit the data to the parent.
+  //
 };
 </script>

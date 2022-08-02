@@ -97,9 +97,6 @@ const handleInput = (
 
     // Update the updated_at field.
     testimonial.updated_at = new Date().toISOString();
-
-    // Emit the data to the parent.
-    //
   }
 };
 </script>
