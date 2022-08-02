@@ -1,11 +1,22 @@
 <template>
   <div>
-    {{ testimonials }}
+    <div class="form-group col-12">
+      <textarea
+        type="text"
+        id="testimonials"
+        class="form-control"
+        @input="handleInput($event, testimonials)"
+        >{{ testimonials }}</textarea
+      >
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ITestimonial } from '@/interfaces';
+import { onMounted } from 'vue';
+import TestimonialsDialogVue from './TestimonialsDialog.vue';
+import TestimonialsDialogFormTabVue from './TestimonialsDialogFormTab.vue';
 
 // Incoming props from the parent.
 const props = defineProps({
@@ -18,4 +29,6 @@ const props = defineProps({
 const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
+
+
 </script>
