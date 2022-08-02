@@ -4,8 +4,9 @@
       <textarea
         type="text"
         id="testimonials"
+        rows="20"
         class="form-control"
-        @input="handleInput($event, testimonials)"
+        @input="handleInput($event)"
         >{{ testimonials }}</textarea
       >
     </div>
@@ -14,13 +15,14 @@
 
 <script setup lang="ts">
 import { ITestimonial } from '@/interfaces';
-import { onMounted } from 'vue';
-import TestimonialsDialogVue from './TestimonialsDialog.vue';
-import TestimonialsDialogFormTabVue from './TestimonialsDialogFormTab.vue';
 
 // Incoming props from the parent.
 const props = defineProps({
-  testimonials: { type: Array as () => ITestimonial[], required: true },
+  testimonials: {
+    type: Array as () => ITestimonial[],
+    default: () => [],
+    required: true,
+  },
 });
 
 // When a testimonial(s) is updated, emit an event to the parent
@@ -30,5 +32,11 @@ const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
+const handleInput = (e: Event) => {
+  // Get the input from the event target.
+  const input = (e.target as HTMLTextAreaElement).value;
 
+  // Parse the data into JSON.
+  const data = JSON.parse(input);
+};
 </script>
