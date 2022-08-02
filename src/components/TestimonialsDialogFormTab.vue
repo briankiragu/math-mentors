@@ -51,7 +51,11 @@ import { ITestimonial } from '@/interfaces';
 
 // Incoming props from the parent.
 const props = defineProps({
-  testimonials: { type: Array as () => ITestimonial[], required: true },
+  testimonials: {
+    type: Array as () => ITestimonial[],
+    default: () => [],
+    required: true,
+  },
 });
 
 // When a testimonial(s) is updated, emit an event to the parent
