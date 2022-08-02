@@ -30,5 +30,16 @@ const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
+const handleInput = (
+  event: Event,
+  id: number,
+  field: 'testimonials'
+): void => {
+  // Find the testimonial that we are editing.
+  const testimonial = props.testimonials.find(
+    (testimonial) => testimonial.id === id
+  );
+};
+
 
 </script>
