@@ -116,7 +116,7 @@ const handleNewTestimonial = (): void => {
 };
 
 /**
- * It deletes a testimonial from the array using its ID 
+ * It deletes a testimonial from the array using its ID
  * and emits the updated array to the parent.
  *
  * @param {number} id The ID of the testimonial to remove.
@@ -141,7 +141,7 @@ const handleDeleteTestimonial = (id: number): void => {
     // Emit the new testimonials array to the parent.
     emit('update:testimonials', clone);
   }
-}
+};
 
 /**
  * When a user updates a field in the form, look for the testimonial
@@ -182,7 +182,6 @@ const handleInput = (
 
     // Emit the updated testimonials to the parent.
     emit('update:testimonials', clone);
-
   }
 };
 </script>
