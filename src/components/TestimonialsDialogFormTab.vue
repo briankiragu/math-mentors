@@ -9,8 +9,24 @@
     <div
       v-for="testimonial of testimonials"
       :key="`testimonial-${testimonial.id}-form`"
-      class="mb-4 form-row"
+      class="position-relative rounded-lg bg-light mb-4 p-3 form-row"
     >
+      <!-- Delete button -->
+      <button
+        type="button"
+        class="
+          delete-testimonial
+          close
+          position-absolute
+          rounded-circle
+          bg-danger
+        "
+        aria-label="Close"
+        @click.prevent="handleDeleteTestimonial(testimonial.id)"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+
       <!-- Testimonial author -->
       <div class="form-group col-md-6">
         <label for="author">Author</label>
@@ -141,3 +157,12 @@ const handleInput = (
   }
 };
 </script>
+
+<style scoped>
+.delete-testimonial {
+  width: 35px;
+  height: 35px;
+  top: 5px;
+  right: 5px;
+}
+</style>
