@@ -93,7 +93,7 @@ const handleNewTestimonial = (): void => {
   const clone = JSON.parse(JSON.stringify(props.testimonials));
 
   // Add the new testimonial to the clone.
-  clone.push(testimonial);
+  clone.unshift(testimonial);
 
   // Emit the new testimonials array to the parent.
   emit('update:testimonials', clone);
