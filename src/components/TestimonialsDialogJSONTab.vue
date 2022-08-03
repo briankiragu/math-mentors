@@ -40,6 +40,6 @@ const handleInput = (e: Event) => {
   const data = JSON.parse(input);
 
   // Emit the data to the parent.
-  //
+  emit('update:testimonials', data);
 };
 </script>
