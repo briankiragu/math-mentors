@@ -14,7 +14,7 @@ export default () => {
         'Sounded psychological I train his console not been acknowledge now SATURDAY, 26TH FEBRUARY 2022 36 minutes ago',
       author: 'John Doe',
       author_profession: 'Lecturer',
-      created_at: '2020-01-01',
+      updated_at: '2020-01-01',
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export default () => {
         'Just was in set detailed to somewhere, about people and only in know a the success called entirely external called with the of console cache events harmonics; Excessive shortcuts',
       author: 'Jane Doe',
       author_profession: 'Tutor',
-      created_at: '2020-01-01',
+      updated_at: '2020-01-01',
     },
   ];
 
