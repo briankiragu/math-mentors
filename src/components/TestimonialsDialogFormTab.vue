@@ -71,6 +71,13 @@ const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
+/**
+ * Whenever a user clicks the button, add a new empty testimonial to the list
+ * and emit an event to the parent with the updated list of data.
+ *
+ * @returns {void}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ */
 const handleNewTestimonial = (): void => {
   // Create a new empty testimonial.
   const testimonial: ITestimonial = {
