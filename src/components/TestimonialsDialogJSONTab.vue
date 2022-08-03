@@ -6,9 +6,9 @@
         id="testimonials"
         rows="20"
         class="form-control"
+        :value="JSON.stringify(testimonials)"
         @input="handleInput($event)"
-        >{{ testimonials }}</textarea
-      >
+      ></textarea>
     </div>
   </div>
 </template>

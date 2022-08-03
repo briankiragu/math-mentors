@@ -14,7 +14,7 @@
           class="form-control"
           autocomplete="name"
           :value="testimonial.author"
-          @input="handleInput($event, testimonial.id, 'author')"
+          @input.lazy="handleInput($event, testimonial.id, 'author')"
         />
       </div>
 
@@ -27,7 +27,7 @@
           class="form-control"
           autocomplete="organization-title"
           :value="testimonial.author_profession"
-          @input="handleInput($event, testimonial.id, 'author_profession')"
+          @input.lazy="handleInput($event, testimonial.id, 'author_profession')"
         />
       </div>
 
@@ -38,7 +38,7 @@
           type="text"
           id="message"
           class="form-control"
-          @input="handleInput($event, testimonial.id, 'message')"
+          @input.lazy="handleInput($event, testimonial.id, 'message')"
           >{{ testimonial.message }}</textarea
         >
       </div>
