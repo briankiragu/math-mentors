@@ -32,23 +32,9 @@ const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
-<<<<<<< HEAD
-const handleInput = (
-  event: Event,
-  id: number,
-  field: 'testimonials'
-): void => {
-  // Find the testimonial that we are editing.
-  const testimonial = props.testimonials.find(
-    (testimonial) => testimonial.id === id
-  );
-};
-
-=======
 const handleInput = (e: Event) => {
   // Get the input from the event target.
   const input = (e.target as HTMLTextAreaElement).value;
->>>>>>> 87caaff72b4955ee1629963dc45d63d3e7029262
 
   // Parse the data into JSON.
   const data = JSON.parse(input);
