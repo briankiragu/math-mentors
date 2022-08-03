@@ -116,6 +116,34 @@ const handleNewTestimonial = (): void => {
 };
 
 /**
+ * It deletes a testimonial from the array using its ID 
+ * and emits the updated array to the parent.
+ *
+ * @param {number} id The ID of the testimonial to remove.
+ *
+ * @returns {void}
+ * @author Nick Mwalo <mwalonick@gmail.com>
+ */
+const handleDeleteTestimonial = (id: number): void => {
+  // Create a deep clone of the testimonials array.
+  const clone: ITestimonial[] = JSON.parse(JSON.stringify(props.testimonials));
+
+  // Find the index of the removed testimonial.
+  const testimonialIndex = clone.findIndex(
+    (testimonial) => testimonial.id === id
+  );
+
+  // If the is not found...
+  if (testimonialIndex !== -1) {
+    // Remove the testimonial from the array of testimonials.
+    clone.splice(testimonialIndex, 1);
+
+    // Emit the new testimonials array to the parent.
+    emit('update:testimonials', clone);
+  }
+}
+
+/**
  * When a user updates a field in the form, look for the testimonial
  * within the props and update the relevant field.
  *
@@ -154,6 +182,7 @@ const handleInput = (
 
     // Emit the updated testimonials to the parent.
     emit('update:testimonials', clone);
+
   }
 };
 </script>
