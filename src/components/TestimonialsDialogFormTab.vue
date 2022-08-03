@@ -81,22 +81,29 @@ const handleInput = (
   id: number,
   field: 'author' | 'author_profession' | 'message'
 ): void => {
-  // Find the testimonial that we are editing.
-  const testimonial = props.testimonials.find(
+  // Create a deep copy of the testimonials. This is to ensure that
+  // we do not edit a reference to the prop.
+  const clone: ITestimonial[] = JSON.parse(JSON.stringify(props.testimonials));
+
+  // Find the index testimonial that we are editing.
+  const testimonialIndex = clone.findIndex(
     (testimonial) => testimonial.id === id
   );
 
   // If a testimonial was found...
-  if (testimonial !== undefined) {
+  if (testimonialIndex !== -1) {
     // Get the input from the user.
     const value = (event.target as HTMLInputElement | HTMLTextAreaElement)
       .value;
 
     // Update the field that was provided.
-    testimonial[field] = value;
+    clone[testimonialIndex][field] = value;
 
     // Update the updated_at field.
-    testimonial.updated_at = new Date().toISOString();
+    clone[testimonialIndex].updated_at = new Date().toISOString();
+
+    // Emit the updated testimonials to the parent.
+    emit('update:testimonials', clone);
   }
 };
 </script>
