@@ -1,5 +1,11 @@
 <template>
   <div>
+    <!-- Button to add a testimonial. -->
+    <button class="btn btn-info my-3" @click.prevent="handleNewTestimonial">
+      Add a testimonial
+    </button>
+
+    <!-- List of testimonial inputs. -->
     <div
       v-for="testimonial of testimonials"
       :key="`testimonial-${testimonial.id}-form`"
@@ -64,6 +70,27 @@ const props = defineProps({
 const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
+
+const handleNewTestimonial = (): void => {
+  // Create a new empty testimonial.
+  const testimonial: ITestimonial = {
+    id: props.testimonials.length + 1,
+    author: '',
+    author_profession: '',
+    message: '',
+    created_at: new Date().toISOString(),
+    updated_at: null,
+  };
+
+  // Create a deep clone of the testimonials array.
+  const clone = JSON.parse(JSON.stringify(props.testimonials));
+
+  // Add the new testimonial to the clone.
+  clone.push(testimonial);
+
+  // Emit the new testimonials array to the parent.
+  emit('update:testimonials', clone);
+};
 
 /**
  * When a user updates a field in the form, look for the testimonial
