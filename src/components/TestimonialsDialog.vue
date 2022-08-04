@@ -77,38 +77,20 @@
 import { ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
+import useData from '@/composables/useData';
 import { ITestimonial } from '@/interfaces';
+
+// Import methods for fetching data.
+const { getTestimonials } = useData();
 
 // Keeps track of which tab is active. Default is HTML.
 const currentActiveTab = ref<string>('HTML');
 
 // List of testimonials to edit.
-const testimonials = ref<ITestimonial[]>([
-  {
-    id: 1,
-    message: 'This is the message',
-    author: 'Brian',
-    author_profession: 'coder',
-    created_at: new Date().toISOString(),
-    updated_at: null,
-  },
-  {
-    id: 2,
-    message: 'This is the message',
-    author: 'Nick',
-    author_profession: 'coder',
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    message: 'This is the message',
-    author: 'Lawrence',
-    author_profession: 'manager',
-    created_at: new Date().toISOString(),
-    updated_at: null,
-  },
-]);
+const testimonials = ref<ITestimonial[]>([]);
+
+// Get the testimonials from the file.
+testimonials.value = getTestimonials();
 
 /**
  * Handle when a user clicks on a tab.
