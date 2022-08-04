@@ -92,6 +92,41 @@ const testimonials = ref<ITestimonial[]>([]);
 // Get the testimonials from the file.
 testimonials.value = getTestimonials();
 
+//fetching data from api
+fetch('https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials')
+.then(res => {
+ if (res.ok) {console.log("GET request")}
+  else {console.log("GET request none")}
+  return res 
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.then(error => console.log(error));
+
+fetch('https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials',{
+  method : "PUT",
+  headers: {
+    'content-type':'testimonial/json'
+  },
+  body: JSON.stringify(
+   {
+    author: '',
+    author_profession: '',
+    message: '',
+    created_at: new Date().toISOString(),
+    updated_at: null,
+  })
+  })
+  .then(res => {
+ if (res.ok) {console.log("PUT request")}
+  else {console.log("PUT request none")}
+  return res 
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.then(error => console.log(error));
+
+
 /**
  * Handle when a user clicks on a tab.
  *
