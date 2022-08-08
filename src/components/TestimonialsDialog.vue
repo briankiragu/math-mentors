@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
 import useData from '@/composables/useData';
@@ -89,8 +89,11 @@ const currentActiveTab = ref<string>('HTML');
 // List of testimonials to edit.
 const testimonials = ref<ITestimonial[]>([]);
 
-// Get the testimonials from the file.
-testimonials.value = getTestimonials();
+// When the component is mounted, fetch the testimonials.
+onMounted(async () => {
+  // Get the testimonials from the source (file or API).
+  testimonials.value = await getTestimonials(`../../server/testimonials.cfg`);
+});
 
 /**
  * Handle when a user clicks on a tab.
