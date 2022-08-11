@@ -47,3 +47,5 @@ const handleInput = (e: Event) => {
   emit('update:testimonials', data);
 };
 </script>
+
+<style scoped></style>

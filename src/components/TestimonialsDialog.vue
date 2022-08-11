@@ -17,7 +17,6 @@
       tabindex="-1"
       aria-labelledby="editTestimonialsModalLabel"
       aria-hidden="true"
-      style="z-index: 9999;"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -95,52 +94,10 @@ const testimonials = ref<ITestimonial[]>([]);
 // When the component is mounted, fetch the testimonials.
 onMounted(async () => {
   // Get the testimonials from the source (file or API).
-  testimonials.value = await getTestimonials(`../../server/testimonials.cfg`);
+  testimonials.value = await getTestimonials(
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+  );
 });
-
-// fetching data from api
-fetch(
-  'https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials'
-)
-  .then((res) => {
-    if (res.ok) {
-      console.log('GET request');
-    } else {
-      console.log('GET request none');
-    }
-    return res;
-  })
-  .then((res) => res.json())
-  .then((data) => console.log(data))
-  .then((error) => console.log(error));
-
-fetch(
-  'https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials',
-  {
-    method: 'PUT',
-    headers: {
-      'content-type': 'testimonial/json',
-    },
-    body: JSON.stringify({
-      author: '',
-      author_profession: '',
-      message: '',
-      created_at: new Date().toISOString(),
-      updated_at: null,
-    }),
-  }
-)
-  .then((res) => {
-    if (res.ok) {
-      console.log('PUT request');
-    } else {
-      console.log('PUT request none');
-    }
-    return res;
-  })
-  .then((res) => res.json())
-  .then((data) => console.log(data))
-  .then((error) => console.log(error));
 
 /**
  * Handle when a user clicks on a tab.
@@ -153,3 +110,5 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   currentActiveTab.value = tab;
 };
 </script>
+
+<style scoped></style>
