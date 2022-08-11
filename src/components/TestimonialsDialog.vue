@@ -12,8 +12,8 @@
 
     <!-- Modal -->
     <div
-      class="modal fade"
       id="editTestimonialsModal"
+      class="modal fade"
       tabindex="-1"
       aria-labelledby="editTestimonialsModalLabel"
       aria-hidden="true"
@@ -22,7 +22,7 @@
         <div class="modal-content">
           <!-- Modal header -->
           <div class="modal-header">
-            <h5 class="modal-title" id="editTestimonialsModalLabel">Edit</h5>
+            <h5 id="editTestimonialsModalLabel" class="modal-title">Edit</h5>
           </div>
 
           <!-- Modal body -->
@@ -74,41 +74,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+import { onMounted, ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
+import useData from '@/composables/useData';
 import { ITestimonial } from '@/interfaces';
+
+// Import methods for fetching data.
+const { getTestimonials } = useData();
 
 // Keeps track of which tab is active. Default is HTML.
 const currentActiveTab = ref<string>('HTML');
 
 // List of testimonials to edit.
-const testimonials = ref<ITestimonial[]>([
-  {
-    id: 1,
-    message: 'This is the message',
-    author: 'Brian',
-    author_profession: 'coder',
-    created_at: new Date().toISOString(),
-    updated_at: null,
-  },
-  {
-    id: 2,
-    message: 'This is the message',
-    author: 'Nick',
-    author_profession: 'coder',
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    message: 'This is the message',
-    author: 'Lawrence',
-    author_profession: 'manager',
-    created_at: new Date().toISOString(),
-    updated_at: null,
-  },
-]);
+const testimonials = ref<ITestimonial[]>([]);
+
+// When the component is mounted, fetch the testimonials.
+onMounted(async () => {
+  // Get the testimonials from the source (file or API).
+  testimonials.value = await getTestimonials(
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+  );
+});
 
 /**
  * Handle when a user clicks on a tab.
@@ -121,3 +110,5 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   currentActiveTab.value = tab;
 };
 </script>
+
+<style scoped></style>

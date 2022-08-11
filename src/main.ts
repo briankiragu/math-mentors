@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { createApp } from 'vue';
 import TestimonialsDialog from '@/components/TestimonialsDialog.vue';
 
@@ -7,4 +8,4 @@ const app = createApp({
 });
 
 // Mount the application.
-app.mount('#app');
+app.mount('#page');

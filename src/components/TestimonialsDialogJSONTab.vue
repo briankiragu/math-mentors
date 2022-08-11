@@ -2,8 +2,8 @@
   <div>
     <div class="form-group col-12">
       <textarea
-        type="text"
         id="testimonials"
+        type="text"
         rows="20"
         class="form-control"
         :value="JSON.stringify(testimonials)"
@@ -14,9 +14,12 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import { ITestimonial } from '@/interfaces';
 
 // Incoming props from the parent.
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   testimonials: {
     type: Array as () => ITestimonial[],
@@ -29,6 +32,7 @@ const props = defineProps({
 // to change the prop themeselves. Props should NOT be edited
 // from child components.
 const emit = defineEmits<{
+  // eslint-disable-next-line no-unused-vars
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
@@ -43,3 +47,5 @@ const handleInput = (e: Event) => {
   emit('update:testimonials', data);
 };
 </script>
+
+<style scoped></style>

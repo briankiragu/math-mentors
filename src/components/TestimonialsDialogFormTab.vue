@@ -9,34 +9,43 @@
     <div
       v-for="testimonial of testimonials"
       :key="`testimonial-${testimonial.id}-form`"
-      class="position-relative rounded-lg bg-light mb-4 p-3 form-row"
+      class="position-relative shadow-sm rounded-lg bg-light mb-4 p-3 form-row"
     >
       <!-- Delete button -->
       <button
         type="button"
-        class="
-          delete-testimonial
-          close
-          position-absolute
-          rounded-circle
-          bg-danger
-        "
+        class="delete-testimonial close position-absolute rounded-circle"
         aria-label="Close"
         @click.prevent="handleDeleteTestimonial(testimonial.id)"
       >
-        <span aria-hidden="true">&times;</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          fill="#000000"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M16 9H8v10h8V9zm-.47 7.12l-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12 1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12z"
+            opacity=".3"
+          />
+          <path
+            d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"
+          />
+        </svg>
       </button>
 
       <!-- Testimonial author -->
       <div class="form-group col-md-6">
         <label for="author">Author</label>
         <input
-          type="text"
           id="author"
+          type="text"
           class="form-control"
           autocomplete="name"
           :value="testimonial.author"
-          @input.lazy="handleInput($event, testimonial.id, 'author')"
+          @input="handleInput($event, testimonial.id, 'author')"
         />
       </div>
 
@@ -44,12 +53,12 @@
       <div class="form-group col-md-6">
         <label for="profession">Profession</label>
         <input
-          type="text"
           id="profession"
+          type="text"
           class="form-control"
           autocomplete="organization-title"
           :value="testimonial.author_profession"
-          @input.lazy="handleInput($event, testimonial.id, 'author_profession')"
+          @input="handleInput($event, testimonial.id, 'author_profession')"
         />
       </div>
 
@@ -57,18 +66,20 @@
       <div class="form-group col-12">
         <label for="message">Message</label>
         <textarea
-          type="text"
           id="message"
+          type="text"
           class="form-control"
-          @input.lazy="handleInput($event, testimonial.id, 'message')"
-          >{{ testimonial.message }}</textarea
-        >
+          :value="testimonial.message"
+          @input="handleInput($event, testimonial.id, 'message')"
+        ></textarea>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import { ITestimonial } from '@/interfaces';
 
 // Incoming props from the parent.
@@ -84,6 +95,7 @@ const props = defineProps({
 // to change the prop themeselves. Props should NOT be edited
 // from child components.
 const emit = defineEmits<{
+  // eslint-disable-next-line no-unused-vars
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
@@ -171,8 +183,7 @@ const handleInput = (
   // If a testimonial was found...
   if (testimonialIndex !== -1) {
     // Get the input from the user.
-    const value = (event.target as HTMLInputElement | HTMLTextAreaElement)
-      .value;
+    const { value } = event.target as HTMLInputElement | HTMLTextAreaElement;
 
     // Update the field that was provided.
     clone[testimonialIndex][field] = value;
@@ -188,9 +199,10 @@ const handleInput = (
 
 <style scoped>
 .delete-testimonial {
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   top: 5px;
-  right: 5px;
+  right: 8px;
+  background-color: #cbd5e1;
 }
 </style>
