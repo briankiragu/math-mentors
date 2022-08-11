@@ -6,3 +6,6 @@ dist
 
 # Editor files
 .vscode
+
+# OS files
+.DS_Store
