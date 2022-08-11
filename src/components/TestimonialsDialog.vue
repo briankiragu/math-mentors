@@ -17,6 +17,7 @@
       tabindex="-1"
       aria-labelledby="editTestimonialsModalLabel"
       aria-hidden="true"
+      style="z-index: 9999;"
     >
       <div class="modal-dialog">
         <div class="modal-content">

@@ -9,7 +9,7 @@
     <div
       v-for="testimonial of testimonials"
       :key="`testimonial-${testimonial.id}-form`"
-      class="position-relative rounded-lg bg-light mb-4 p-3 form-row"
+      class="position-relative shadow-sm rounded-lg bg-light mb-4 p-3 form-row"
     >
       <!-- Delete button -->
       <button
