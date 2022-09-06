@@ -29,16 +29,16 @@
         <!-- Dialog content -->
         <article class="dialog-content__body">
           <!-- Tab headings -->
-          <nav class="dialog-content__body__nav">
+          <nav class="dialog-content__body__tab">
             <button
-              class="dialog-content__body__nav-item"
+              class="dialog-content__body__tab-item"
               :class="{ active: activeTab === 'HTML' }"
               @click.prevent="handleTabClick('HTML')"
             >
               HTML
             </button>
             <button
-              class="dialog-content__body__nav-item"
+              class="dialog-content__body__tab-item"
               :class="{ active: activeTab === 'JSON' }"
               @click.prevent="handleTabClick('JSON')"
             >
@@ -47,7 +47,7 @@
           </nav>
 
           <!-- Tab body -->
-          <main>
+          <main class="dialog-content__body__tab-content">
             <TestimonialsDialogFormTab
               v-show="activeTab === 'HTML'"
               v-model:testimonials="testimonials"
@@ -248,17 +248,17 @@ button:focus {
   padding: 1.2rem 2rem;
 }
 
-.dialog-content__body__nav {
+.dialog-content__body__tab {
   margin-bottom: 1rem;
 }
 
-.dialog-content__body__nav-item {
+.dialog-content__body__tab-item {
   border-radius: 0;
 
   background-color: transparent;
 }
 
-.dialog-content__body__nav-item:hover {
+.dialog-content__body__tab-item:hover {
   border-radius: 0;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -266,9 +266,14 @@ button:focus {
   background-color: #e2e8f0;
 }
 
-.dialog-content__body__nav-item.active {
+.dialog-content__body__tab-item.active {
   border-radius: 0;
   border-bottom: 2px solid #2563eb;
+}
+
+.dialog-content__body__tab-content {
+  width: 100%;
+  height: 100%;
 }
 
 .dialog-content__footer {
