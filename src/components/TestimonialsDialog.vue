@@ -7,17 +7,52 @@
     <dialog id="testimonials" ref="dialogEl" modal-mode="mega">
       <form method="dialog">
         <!-- Dialog header -->
-        <header>
+        <header class="dialog__header">
           <h3>Update Testimonials</h3>
-          <button @click.prevent="closeDialog('close')"></button>
+          <button @click.prevent="closeDialog('close')">
+            <img
+              src="@/assets/icons/close.svg"
+              alt="Close icon"
+              width="25"
+              height="25"
+            />
+          </button>
         </header>
 
         <!-- Dialog content -->
-        <article></article>
+        <article>
+          <!-- Tab headings -->
+          <nav class="mb-2">
+            <button
+              class="btn btn-primary mr-1"
+              @click.prevent="handleTabClick('HTML')"
+            >
+              HTML
+            </button>
+            <button
+              class="btn btn-secondary"
+              @click.prevent="handleTabClick('JSON')"
+            >
+              JSON
+            </button>
+          </nav>
+
+          <!-- Tab body -->
+          <main>
+            <TestimonialsDialogFormTab
+              v-show="currentActiveTab === 'HTML'"
+              v-model:testimonials="testimonials"
+            />
+            <TestimonialsDialogJSONTab
+              v-show="currentActiveTab === 'JSON'"
+              v-model:testimonials="testimonials"
+            />
+          </main>
+        </article>
 
         <!-- Dialog footer -->
         <footer>
-          <menu>
+          <menu class="dialog__footer">
             <button
               autofocus
               type="reset"
@@ -46,7 +81,7 @@ import { ITestimonial } from '@/interfaces';
 const { getTestimonials } = useData();
 
 // We want to get a template reference to the dialog.
-const dialogEl = ref<HTMLDialogElement>(null);
+const dialogEl = ref<HTMLDialogElement | null>(null);
 
 // Keeps track of which tab is active. Default is HTML.
 const currentActiveTab = ref<string>('HTML');
@@ -101,5 +136,45 @@ onMounted(async () => {
 <style scoped>
 #testimonials {
   transition: opacity 0.5s ease-out;
+
+  border: none;
+  border-radius: 18px;
+
+  padding: 2rem;
+}
+
+.dialog__header {
+  margin: 0 0 1.2rem 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.4rem;
+}
+
+.dialog__header h3 {
+  margin: 0;
+}
+
+.dialog__header button {
+  width: 45px;
+  height: 40px;
+
+  outline: none;
+  border: none;
+  border-radius: 100%;
+  background: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease-in;
+}
+
+.dialog__header button:hover {
+  background: hsl(213, 27%, 84%);
 }
 </style>
