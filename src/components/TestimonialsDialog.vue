@@ -184,6 +184,24 @@ button:focus {
   transition: opacity 0.5s ease-out;
 }
 
+@media only screen and (min-width: 768px) {
+  .dialog-content {
+    width: 60vw;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .dialog-content {
+    width: 50vw;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .dialog-content {
+    width: 40vw;
+  }
+}
+
 .dialog-content__header {
   box-shadow: 0px 7px 25px 2px rgba(0, 0, 0, 0.1);
 
