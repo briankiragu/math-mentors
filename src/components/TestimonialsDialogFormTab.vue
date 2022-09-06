@@ -204,5 +204,55 @@ const handleInput = (
   top: 5px;
   right: 8px;
   background-color: #cbd5e1;
+  float: right;
+
+  outline: none;
+  border: none;
+  border-radius: 100%;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease-in;
+}
+.delete-testimonial:hover {
+  background-color: #e2e8f0;
+}
+
+input[type=text],select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #d4d4d4;;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+textarea[type=text],select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #d4d4d4;;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.btn{
+  border: 2px solid #1d4ed8;
+  background: #1d4ed8;
+
+  color: #eff6ff;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0.7rem 1.4rem;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  transition: all 0.2s ease-in;
+  border: 2px solid transparent;
 }
 </style>
