@@ -1,77 +1,35 @@
 <template>
   <div>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#editTestimonialsModal"
-    >
-      Edit
-    </button> 
+    <!-- Dialog trigger -->
+    <button type="button" @click.prevent="showDialog">Edit</button>
 
-    <!-- Modal -->
-    <div
-      id="editTestimonialsModal"
-      class="modal fade"
-      tabindex="-1"
-      aria-labelledby="editTestimonialsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal header -->
-          <div class="modal-header">
-            <h5 id="editTestimonialsModalLabel" class="modal-title">Edit</h5>
-          </div>
+    <!-- Dialog content -->
+    <dialog id="testimonials" ref="dialogEl" modal-mode="mega">
+      <form method="dialog">
+        <!-- Dialog header -->
+        <header>
+          <h3>Update Testimonials</h3>
+          <button @click.prevent="closeDialog('close')"></button>
+        </header>
 
-          <!-- Modal body -->
-          <div class="modal-body">
-            <!-- Tab headings -->
-            <header class="mb-2">
-              <button
-                class="btn btn-primary mr-1"
-                :class="{'active':currentActiveTab==='HTML'}"
-                @click.prevent="handleTabClick('HTML')"
-              >
-                HTML
-              </button>
-              <button
-                class="btn btn-secondary"
-                :class="{'active':currentActiveTab==='JSON'}"
-                @click.prevent="handleTabClick('JSON')"
-              >
-                JSON
-              </button>
-            </header>
+        <!-- Dialog content -->
+        <article></article>
 
-            <!-- Tab body -->
-            <main>
-              <TestimonialsDialogFormTab
-                v-show="currentActiveTab === 'HTML'"
-                v-model:testimonials="testimonials"
-              />
-              <TestimonialsDialogJSONTab
-                v-show="currentActiveTab === 'JSON'"
-                v-model:testimonials="testimonials"
-              />
-            </main>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
+        <!-- Dialog footer -->
+        <footer>
+          <menu>
             <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
+              autofocus
+              type="reset"
+              @click.prevent="closeDialog('cancel')"
             >
-              Close
+              Cancel
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+            <button type="submit" value="confirm">Update testimonials</button>
+          </menu>
+        </footer>
+      </form>
+    </dialog>
   </div>
 </template>
 
@@ -87,19 +45,38 @@ import { ITestimonial } from '@/interfaces';
 // Import methods for fetching data.
 const { getTestimonials } = useData();
 
+// We want to get a template reference to the dialog.
+const dialogEl = ref<HTMLDialogElement>(null);
+
 // Keeps track of which tab is active. Default is HTML.
 const currentActiveTab = ref<string>('HTML');
 
 // List of testimonials to edit.
 const testimonials = ref<ITestimonial[]>([]);
 
-// When the component is mounted, fetch the testimonials.
-onMounted(async () => {
-  // Get the testimonials from the source (file or API).
-  testimonials.value = await getTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
-  );
-});
+/**
+ * Show the dialog.
+ *
+ * @returns {void}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ */
+const showDialog = (): void => {
+  // If the dialog is closed, open it.
+  dialogEl.value?.showModal();
+};
+
+/**
+ * Close the dialog with the correct type.
+ *
+ * @param {'close' | 'cancel'} action Closing action type.
+ *
+ * @returns {void}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ */
+const closeDialog = (action: 'close' | 'cancel'): void => {
+  // If the dialog is open, close it.
+  dialogEl.value?.close(action);
+};
 
 /**
  * Handle when a user clicks on a tab.
@@ -111,38 +88,18 @@ onMounted(async () => {
 const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   currentActiveTab.value = tab;
 };
+
+// When the component is mounted, fetch the testimonials.
+onMounted(async () => {
+  // Get the testimonials from the source (file or API).
+  testimonials.value = await getTestimonials(
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+  );
+});
 </script>
 
 <style scoped>
-  .modal-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height:540px;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    background: rgba(29, 26, 26, 0.603);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
-    margin: auto;
-  }
-  button[type=button] {
-    cursor: pointer; 
-    margin-right: 10px;
-    padding: 1px 0;
-    font-size: 17px;
-    text-align: center;
-    font-weight: 200;
-    border-radius: 5px;
-  
-  }
-  .active {
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color:#0066ff
-  }
-
+#testimonials {
+  transition: opacity 0.5s ease-out;
+}
 </style>
