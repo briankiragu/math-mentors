@@ -228,7 +228,7 @@ input[type=text],select{
   margin: 8px 0;
   display: inline-block;
   border: 2px solid #d4d4d4;;
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
 }
 textarea[type=text],select{
@@ -237,7 +237,7 @@ textarea[type=text],select{
   margin: 8px 0;
   display: inline-block;
   border: 2px solid #d4d4d4;;
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
 }
 .btn{
