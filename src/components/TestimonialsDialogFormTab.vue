@@ -254,5 +254,6 @@ textarea[type=text],select{
 
   transition: all 0.2s ease-in;
   border: 2px solid transparent;
+  margin-bottom: 1rem;
 }
 </style>
