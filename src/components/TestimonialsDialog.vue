@@ -8,7 +8,7 @@
       data-target="#editTestimonialsModal"
     >
       Edit
-    </button>
+    </button> 
 
     <!-- Modal -->
     <div
@@ -31,12 +31,14 @@
             <header class="mb-2">
               <button
                 class="btn btn-primary mr-1"
+                :class="{'active':currentActiveTab==='HTML'}"
                 @click.prevent="handleTabClick('HTML')"
               >
                 HTML
               </button>
               <button
                 class="btn btn-secondary"
+                :class="{'active':currentActiveTab==='JSON'}"
                 @click.prevent="handleTabClick('JSON')"
               >
                 JSON
@@ -111,4 +113,36 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height:540px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(29, 26, 26, 0.603);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    margin: auto;
+  }
+  button[type=button] {
+    cursor: pointer; 
+    margin-right: 10px;
+    padding: 1px 0;
+    font-size: 17px;
+    text-align: center;
+    font-weight: 200;
+    border-radius: 5px;
+  
+  }
+  .active {
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color:#0066ff
+  }
+
+</style>
