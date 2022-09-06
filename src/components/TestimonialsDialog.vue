@@ -20,7 +20,7 @@
         </header>
 
         <!-- Dialog content -->
-        <article>
+        <article class="dialog__content">
           <!-- Tab headings -->
           <nav class="mb-2">
             <button
@@ -142,16 +142,20 @@ onMounted(async () => {
 
 <style scoped>
 #testimonials {
-  transition: opacity 0.5s ease-out;
-
   border: none;
   border-radius: 18px;
 
+  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.1);
+
   padding: 0;
+
+  transition: opacity 0.5s ease-out;
 }
 
 .dialog__header {
-  padding: 2rem;
+  box-shadow: 0px 7px 25px 2px rgba(0, 0, 0, 0.1);
+
+  padding: 1.6rem 2rem;
 
   display: flex;
   justify-content: space-between;
@@ -171,7 +175,7 @@ onMounted(async () => {
   outline: none;
   border: none;
   border-radius: 100%;
-  background: none;
+  background-color: transparent;
 
   display: flex;
   justify-content: center;
@@ -182,12 +186,19 @@ onMounted(async () => {
 }
 
 .dialog__header button:hover {
-  background: hsl(213, 27%, 84%);
+  background-color: #e2e8f0;
+}
+
+.dialog__content {
+  margin: 0;
+  padding: 1.6rem 2rem;
 }
 
 .dialog__footer {
+  box-shadow: 0px -7px 25px 2px rgba(0, 0, 0, 0.1);
+
   margin: 0;
-  padding: 2rem;
+  padding: 1.4rem 2rem;
 
   display: flex;
   justify-content: space-between;
