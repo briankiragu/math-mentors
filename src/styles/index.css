@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 /* Stop a user from scrolling when a modal is open */

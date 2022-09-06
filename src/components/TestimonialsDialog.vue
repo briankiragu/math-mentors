@@ -56,11 +56,18 @@
             <button
               autofocus
               type="reset"
+              class="dialog__footer-cancel"
               @click.prevent="closeDialog('cancel')"
             >
               Cancel
             </button>
-            <button type="submit" value="confirm">Update testimonials</button>
+            <button
+              type="submit"
+              class="dialog__footer-confirm"
+              value="confirm"
+            >
+              Update testimonials
+            </button>
           </menu>
         </footer>
       </form>
@@ -140,11 +147,11 @@ onMounted(async () => {
   border: none;
   border-radius: 18px;
 
-  padding: 2rem;
+  padding: 0;
 }
 
 .dialog__header {
-  margin: 0 0 1.2rem 0;
+  padding: 2rem;
 
   display: flex;
   justify-content: space-between;
@@ -176,5 +183,49 @@ onMounted(async () => {
 
 .dialog__header button:hover {
   background: hsl(213, 27%, 84%);
+}
+
+.dialog__footer {
+  margin: 0;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog__footer button {
+  border: 2px solid transparent;
+  border-radius: 8px;
+
+  padding: 0.75rem 1.2rem;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.dialog__footer-cancel {
+  background: none;
+
+  color: #334155;
+}
+
+.dialog__footer-cancel:hover {
+  background: #e2e8f0;
+  border: 2px solid #e2e8f0;
+}
+
+.dialog__footer-cancel:focus {
+  border: 2px solid #cbd5e1;
+}
+
+.dialog__footer-confirm {
+  border: 2px solid #1d4ed8;
+  background: #1d4ed8;
+
+  color: #eff6ff;
 }
 </style>
