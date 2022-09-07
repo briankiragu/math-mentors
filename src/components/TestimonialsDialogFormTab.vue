@@ -38,7 +38,7 @@
 
       <!-- Testimonial author -->
       <div class="form-group col-md-6">
-        <label for="author">Author</label>
+        <label for="author" style="font-weight:600;">Author</label>
         <input
           id="author"
           type="text"
@@ -51,7 +51,7 @@
 
       <!-- Testimonial author's profession -->
       <div class="form-group col-md-6">
-        <label for="profession">Profession</label>
+        <label for="profession" style="font-weight:600;">Profession</label>
         <input
           id="profession"
           type="text"
@@ -64,7 +64,7 @@
 
       <!-- Testimonial message -->
       <div class="form-group col-12">
-        <label for="message">Message</label>
+        <label for="message" style="font-weight:600;">Message</label>
         <textarea
           id="message"
           type="text"
