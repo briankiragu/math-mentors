@@ -146,6 +146,7 @@ onMounted(async () => {
   testimonials.value = await getTestimonials(
     `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
   );
+  console.dir(testimonials.value);
 });
 </script>
 

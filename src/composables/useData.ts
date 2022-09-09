@@ -18,7 +18,8 @@ export default () => {
 
       // Check if the request was successful and return the data.
       if (response.ok) {
-        return response.json();
+        // Get the data from the API.
+        return JSON.parse(await response.json());
       }
 
       // If there was an error, throw an exception.
@@ -65,10 +66,9 @@ export default () => {
    * @returns {Promise<void>}
    * @author Brian Kariuki <bkariuki@hotmail.com>
    */
-  const setTestimonials = async (
-    source: string,
-    testimonials: ITestimonial[]
-  ): Promise<void> => {};
+  const setTestimonials = async (): // source: string,
+  // testimonials: ITestimonial[]
+  Promise<void> => {};
 
   return { getTestimonials, setTestimonials };
 };
