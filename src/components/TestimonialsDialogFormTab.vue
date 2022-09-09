@@ -295,6 +295,6 @@ const handleInput = (
 }
 
 .form-tab__testimonial__field input {
-  margin-right: 1.6rem;
+  margin-right: 1.8rem;
 }
 </style>
