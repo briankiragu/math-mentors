@@ -295,7 +295,7 @@ button:focus {
 
 .dialog-content__footer-cancel:hover {
   background: #e2e8f0;
-  border: 2px solid #e2e8f0; 
+  border: 2px solid #e2e8f0;
 }
 
 .dialog-content__footer-cancel:focus {

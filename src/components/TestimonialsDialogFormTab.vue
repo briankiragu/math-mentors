@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- Button to add a testimonial. -->
-    <button class="btn btn-info my-3" @click.prevent="handleNewTestimonial">
+    <button
+      class="form-tab__new-testimonial"
+      @click.prevent="handleNewTestimonial"
+    >
       Add a testimonial
     </button>
 
@@ -9,12 +12,12 @@
     <div
       v-for="testimonial of testimonials"
       :key="`testimonial-${testimonial.id}-form`"
-      class="position-relative shadow-sm rounded-lg bg-light mb-4 p-3 form-row"
+      class="form-tab__testimonial"
     >
       <!-- Delete button -->
       <button
         type="button"
-        class="delete-testimonial close position-absolute rounded-circle"
+        class="form-tab__testimonial__delete"
         aria-label="Close"
         @click.prevent="handleDeleteTestimonial(testimonial.id)"
       >
@@ -37,12 +40,11 @@
       </button>
 
       <!-- Testimonial author -->
-      <div class="form-group col-md-6">
-        <label for="author" style="font-weight:600;">Author</label>
+      <div class="form-tab__testimonial__field">
+        <label for="author">Author</label>
         <input
           id="author"
           type="text"
-          class="form-control"
           autocomplete="name"
           :value="testimonial.author"
           @input="handleInput($event, testimonial.id, 'author')"
@@ -50,12 +52,11 @@
       </div>
 
       <!-- Testimonial author's profession -->
-      <div class="form-group col-md-6">
-        <label for="profession" style="font-weight:600;">Profession</label>
+      <div class="form-tab__testimonial__field">
+        <label for="profession">Profession</label>
         <input
           id="profession"
           type="text"
-          class="form-control"
           autocomplete="organization-title"
           :value="testimonial.author_profession"
           @input="handleInput($event, testimonial.id, 'author_profession')"
@@ -63,12 +64,12 @@
       </div>
 
       <!-- Testimonial message -->
-      <div class="form-group col-12">
-        <label for="message" style="font-weight:600;">Message</label>
+      <div class="form-tab__testimonial__field">
+        <label for="message">Message</label>
         <textarea
           id="message"
           type="text"
-          class="form-control"
+          rows="6"
           :value="testimonial.message"
           @input="handleInput($event, testimonial.id, 'message')"
         ></textarea>
@@ -198,62 +199,102 @@ const handleInput = (
 </script>
 
 <style scoped>
-.delete-testimonial {
-  width: 38px;
-  height: 38px;
-  top: 5px;
-  right: 8px;
-  background-color: #cbd5e1;
-  float: right;
+.form-tab__new-testimonial {
+  border: none;
+  border-radius: 4px;
 
-  outline: none;
+  margin-bottom: 0.6rem;
+  padding: 0.7rem 1.2rem;
+
+  background-color: #22c55e;
+
+  color: #f0fdf4;
+  font-size: 0.9rem;
+  font-weight: 300;
+
+  cursor: pointer;
+}
+.form-tab__testimonial {
+  position: relative;
+
+  border: none;
+  border-radius: 8px;
+
+  margin-bottom: 1.6rem;
+  padding: 1rem 1.4rem 0.6rem 1.4rem;
+
+  background-color: #e0f2fe;
+}
+
+.form-tab__testimonial__delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  width: 30px;
+  height: 30px;
+
   border: none;
   border-radius: 100%;
-  background-color: transparent;
 
+  background-color: #f0f9ff;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  transition: background-color 0.2s ease-in;
   cursor: pointer;
-  transition: background 0.2s ease-in;
-}
-.delete-testimonial:hover {
-  background-color: #e2e8f0;
 }
 
-input[type=text],select{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 2px solid #d4d4d4;;
-  border-radius: 6px;
-  box-sizing: border-box;
+.form-tab__testimonial__delete:hover {
+  background-color: #f87171;
 }
-textarea[type=text],select{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 2px solid #d4d4d4;;
-  border-radius: 6px;
-  box-sizing: border-box;
+
+.form-tab__testimonial__delete svg {
+  width: 20px;
+  height: 20px;
 }
-.btn{
-  border: 2px solid #1d4ed8;
-  background: #1d4ed8;
 
-  color: #eff6ff;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 0.7rem 1.4rem;
+.form-tab__testimonial__field {
+  margin-bottom: 0.8rem;
 
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-tab__testimonial__field label {
+  margin-bottom: 0.2rem;
+
+  color: #475569;
+  font-size: 0.85rem;
   font-weight: 400;
+}
 
-  transition: all 0.2s ease-in;
-  border: 2px solid transparent;
-  margin-bottom: 1rem;
+.form-tab__testimonial__field input,
+.form-tab__testimonial__field textarea {
+  border: 1px solid #bae6fd;
+  border-radius: 4px;
+
+  padding: 0.5rem 0.8rem;
+
+  color: #6b7280;
+  font-family: 'Inter', sans-serif;
+
+  transition: border-color 0.2s ease-in;
+}
+
+.form-tab__testimonial__field input:hover,
+.form-tab__testimonial__field textarea:hover {
+  border-color: #7dd3fc;
+}
+
+.form-tab__testimonial__field input:focus,
+.form-tab__testimonial__field textarea:focus {
+  outline: none;
+  border-color: #60a5fa;
+}
+
+.form-tab__testimonial__field input {
+  margin-right: 1.6rem;
 }
 </style>
