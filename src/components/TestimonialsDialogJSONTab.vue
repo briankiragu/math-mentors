@@ -1,15 +1,10 @@
 <template>
-  <div>
-    <div class="form-group col-12">
-      <textarea
-        id="testimonials"
-        type="text"
-        rows="20"
-        class="form-control"
-        :value="JSON.stringify(testimonials)"
-        @input="handleInput($event)"
-      ></textarea>
-    </div>
+  <div class="testimonials-tab__json">
+    <textarea
+      class="testimonials-tab__json-input"
+      :value="JSON.stringify(testimonials)"
+      @input="handleInput($event)"
+    ></textarea>
   </div>
 </template>
 
@@ -48,4 +43,18 @@ const handleInput = (e: Event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.testimonials-tab__json {
+  height: 100%;
+}
+
+.testimonials-tab__json-input {
+  width: 100%;
+  height: 100%;
+
+  border: 2px solid #d4d4d4;
+  border-radius: 6px;
+
+  padding: 1rem;
+}
+</style>
