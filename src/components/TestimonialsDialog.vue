@@ -174,6 +174,7 @@ button:focus {
 }
 
 .dialog-content {
+  z-index: 999999;
   border: none;
   border-radius: 18px;
 
