@@ -105,7 +105,8 @@ const emit = defineEmits<{
  * and emit an event to the parent with the updated list of data.
  *
  * @returns {void}
- * @name Brian Kariuki <bkariuki@hotmail.com>
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleNewTestimonial = (): void => {
   // Create a new empty testimonial.
@@ -135,7 +136,7 @@ const handleNewTestimonial = (): void => {
  * @param {number} id The ID of the testimonial to remove.
  *
  * @returns {void}
- * @name Nick Mwalo <mwalonick@gmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleDeleteTestimonial = (id: number): void => {
   // Create a deep clone of the testimonials array.
@@ -165,7 +166,8 @@ const handleDeleteTestimonial = (id: number): void => {
  * @param {string} field The field in the testimonial to update.
  *
  * @returns {void}
- * @name Brian Kariuki <bkariuki@hotmail.com>
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleInput = (
   event: Event,

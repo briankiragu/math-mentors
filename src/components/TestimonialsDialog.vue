@@ -12,7 +12,7 @@
       class="dialog-content"
       modal-mode="mega"
     >
-      <form method="dialog">
+      <form method="dialog" @click.prevent="handleSubmit">
         <!-- Dialog header -->
         <header class="dialog-content__header">
           <h3>Update Testimonials</h3>
@@ -87,14 +87,14 @@
 <script setup lang="ts">
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
 import useData from '@/composables/useData';
 import { ITestimonial } from '@/interfaces';
 
 // Import methods for fetching data.
-const { getTestimonials } = useData();
+const { getTestimonials, setTestimonials } = useData();
 
 // We want to get a template reference to the dialog.
 const dialogEl = ref<HTMLDialogElement | null>(null);
@@ -108,10 +108,17 @@ const testimonials = ref<ITestimonial[]>([]);
 /**
  * Show the dialog.
  *
- * @returns {void}
- * @name Brian Kariuki <bkariuki@hotmail.com>
+ * @returns {Promise<void>}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
-const showDialog = (): void => {
+const showDialog = async (): Promise<void> => {
+  // When the component is mounted, fetch the testimonials.
+  // Get the testimonials from the source (file or API).
+  testimonials.value = await getTestimonials(
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+  );
+
   // If the dialog is closed, open it.
   dialogEl.value?.showModal();
 };
@@ -122,7 +129,8 @@ const showDialog = (): void => {
  * @param {'close' | 'cancel'} action Closing action type.
  *
  * @returns {void}
- * @name Brian Kariuki <bkariuki@hotmail.com>
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const closeDialog = (action: 'close' | 'cancel'): void => {
   // If the dialog is open, close it.
@@ -134,20 +142,30 @@ const closeDialog = (action: 'close' | 'cancel'): void => {
  *
  * @param {string} tab The tab to activate.
  * @returns {void}
- * @name Brian Kariuki <bkariuki@hotmail.com>
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   activeTab.value = tab;
 };
 
-// When the component is mounted, fetch the testimonials.
-onMounted(async () => {
-  // Get the testimonials from the source (file or API).
-  testimonials.value = await getTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+/**
+ * Handle when a user submits the form. Submit the updated testimonials to the API.
+ *
+ * @returns {Promise<void>}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
+ */
+const handleSubmit = async (): Promise<void> => {
+  // Make the request to the API.
+  await setTestimonials(
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=setconfig&config=testimonials`,
+    testimonials.value
   );
-  console.log(testimonials.value);
-});
+
+  // Make sure the dialog is closed.
+  closeDialog('close');
+};
 </script>
 
 <style scoped>

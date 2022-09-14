@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { ITestimonial } from '@/interfaces';
@@ -6,15 +7,15 @@ export default () => {
   /**
    * Return the list of testimonials from the API.
    *
-   * @param {string} source The URL to read the testimonials from.
+   * @param {string} endpoint The URL to read the testimonials from.
    *
    * @returns {Promise<ITestimonial[]>} List of testimonials.
-   * @name Brian Kariuki <bkariuki@hotmail.com>
+   * @author Brian Kariuki <bkariuki@hotmail.com>
    */
-  const getTestimonials = async (source: string): Promise<ITestimonial[]> => {
+  const getTestimonials = async (endpoint: string): Promise<ITestimonial[]> => {
     try {
       // Make the request.
-      const response = await fetch(source);
+      const response = await fetch(endpoint);
 
       // Check if the request was successful and return the data.
       if (response.ok) {
@@ -49,15 +50,38 @@ export default () => {
   /**
    * Post the list of testimonials to the API.
    *
-   * @param {string} source The source file to read the testimonials from.
+   * @param {string} endpoint The API endpoint to send the data.
    * @param {ITestimonial[]} testimonials Testimonials to post.
    *
    * @returns {Promise<void>}
-   * @name Brian Kariuki <bkariuki@hotmail.com>
+   * @author Brian Kariuki <bkariuki@hotmail.com>
    */
-  const setTestimonials = async (): // source: string,
-  // testimonials: ITestimonial[]
-  Promise<void> => {};
+  const setTestimonials = async (
+    endpoint: string,
+    testimonials: ITestimonial[]
+  ): Promise<void> => {
+    try {
+      // Make the request.
+      const response = await fetch(endpoint, {
+        method: 'PUT',
+        body: JSON.stringify(testimonials),
+      });
+
+      // Check if the request was successful and return the data.
+      if (response.ok) {
+        // Get the data from the API.
+        const data = await response.text();
+
+        // Return the parsed data.
+        return JSON.parse(data.trim());
+      }
+
+      // If there was an error, throw an exception.
+      throw new Error('Error posting the testimonials...');
+    } catch (error) {
+      console.error((error as Error).message);
+    }
+  };
 
   return { getTestimonials, setTestimonials };
 };
