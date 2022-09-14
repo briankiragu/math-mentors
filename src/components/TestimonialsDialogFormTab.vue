@@ -10,8 +10,8 @@
 
     <!-- List of testimonial inputs. -->
     <div
-      v-for="testimonial of testimonials"
-      :key="`testimonial-${testimonial.id}-form`"
+      v-for="(testimonial, index) of testimonials"
+      :key="`testimonial-${index}-form`"
       class="form-tab__testimonial"
     >
       <!-- Delete button -->
@@ -19,7 +19,7 @@
         type="button"
         class="form-tab__testimonial__delete"
         aria-label="Close"
-        @click.prevent="handleDeleteTestimonial(testimonial.id)"
+        @click.prevent="handleDeleteTestimonial(index)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,39 +39,39 @@
         </svg>
       </button>
 
-      <!-- Testimonial author -->
+      <!-- Testimonial name -->
       <div class="form-tab__testimonial__field">
-        <label for="author">Author</label>
+        <label for="name">Name</label>
         <input
-          id="author"
+          id="name"
           type="text"
           autocomplete="name"
-          :value="testimonial.author"
-          @input="handleInput($event, testimonial.id, 'author')"
+          :value="testimonial.name"
+          @input="handleInput($event, index, 'name')"
         />
       </div>
 
-      <!-- Testimonial author's profession -->
+      <!-- Testimonial author's title -->
       <div class="form-tab__testimonial__field">
-        <label for="profession">Profession</label>
+        <label for="title">Title</label>
         <input
-          id="profession"
+          id="title"
           type="text"
           autocomplete="organization-title"
-          :value="testimonial.author_profession"
-          @input="handleInput($event, testimonial.id, 'author_profession')"
+          :value="testimonial.title"
+          @input="handleInput($event, index, 'title')"
         />
       </div>
 
-      <!-- Testimonial message -->
+      <!-- Testimonial quote -->
       <div class="form-tab__testimonial__field">
-        <label for="message">Message</label>
+        <label for="quote">Quote</label>
         <textarea
-          id="message"
+          id="quote"
           type="text"
           rows="6"
-          :value="testimonial.message"
-          @input="handleInput($event, testimonial.id, 'message')"
+          :value="testimonial.quote"
+          @input="handleInput($event, index, 'quote')"
         ></textarea>
       </div>
     </div>
@@ -105,15 +105,15 @@ const emit = defineEmits<{
  * and emit an event to the parent with the updated list of data.
  *
  * @returns {void}
- * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @name Brian Kariuki <bkariuki@hotmail.com>
  */
 const handleNewTestimonial = (): void => {
   // Create a new empty testimonial.
   const testimonial: ITestimonial = {
     id: props.testimonials.length + 1,
-    author: '',
-    author_profession: '',
-    message: '',
+    name: '',
+    title: '',
+    quote: '',
     created_at: new Date().toISOString(),
     updated_at: null,
   };
@@ -135,7 +135,7 @@ const handleNewTestimonial = (): void => {
  * @param {number} id The ID of the testimonial to remove.
  *
  * @returns {void}
- * @author Nick Mwalo <mwalonick@gmail.com>
+ * @name Nick Mwalo <mwalonick@gmail.com>
  */
 const handleDeleteTestimonial = (id: number): void => {
   // Create a deep clone of the testimonials array.
@@ -161,36 +161,34 @@ const handleDeleteTestimonial = (id: number): void => {
  * within the props and update the relevant field.
  *
  * @param {Event} event The event object.
- * @param {number} id The ID of the testimonial to update.
+ * @param {number} index The index of the testimonial to update.
  * @param {string} field The field in the testimonial to update.
  *
  * @returns {void}
- * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @name Brian Kariuki <bkariuki@hotmail.com>
  */
 const handleInput = (
   event: Event,
-  id: number,
-  field: 'author' | 'author_profession' | 'message'
+  index: number,
+  field: 'name' | 'title' | 'quote'
 ): void => {
   // Create a deep copy of the testimonials. This is to ensure that
   // we do not edit a reference to the prop.
   const clone: ITestimonial[] = JSON.parse(JSON.stringify(props.testimonials));
 
-  // Find the index testimonial that we are editing.
-  const testimonialIndex = clone.findIndex(
-    (testimonial) => testimonial.id === id
-  );
+  // Get the testimonial via its index
+  const testimonial = clone.at(index);
 
   // If a testimonial was found...
-  if (testimonialIndex !== -1) {
+  if (testimonial) {
     // Get the input from the user.
     const { value } = event.target as HTMLInputElement | HTMLTextAreaElement;
 
     // Update the field that was provided.
-    clone[testimonialIndex][field] = value;
+    testimonial[field] = value;
 
     // Update the updated_at field.
-    clone[testimonialIndex].updated_at = new Date().toISOString();
+    testimonial.updated_at = new Date().toISOString();
 
     // Emit the updated testimonials to the parent.
     emit('update:testimonials', clone);

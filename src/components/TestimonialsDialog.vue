@@ -109,7 +109,7 @@ const testimonials = ref<ITestimonial[]>([]);
  * Show the dialog.
  *
  * @returns {void}
- * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @name Brian Kariuki <bkariuki@hotmail.com>
  */
 const showDialog = (): void => {
   // If the dialog is closed, open it.
@@ -122,7 +122,7 @@ const showDialog = (): void => {
  * @param {'close' | 'cancel'} action Closing action type.
  *
  * @returns {void}
- * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @name Brian Kariuki <bkariuki@hotmail.com>
  */
 const closeDialog = (action: 'close' | 'cancel'): void => {
   // If the dialog is open, close it.
@@ -134,7 +134,7 @@ const closeDialog = (action: 'close' | 'cancel'): void => {
  *
  * @param {string} tab The tab to activate.
  * @returns {void}
- * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @name Brian Kariuki <bkariuki@hotmail.com>
  */
 const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   activeTab.value = tab;
@@ -146,7 +146,7 @@ onMounted(async () => {
   testimonials.value = await getTestimonials(
     `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
   );
-  console.dir(testimonials.value);
+  console.log(testimonials.value);
 });
 </script>
 

@@ -9,7 +9,7 @@ export default () => {
    * @param {string} source The URL to read the testimonials from.
    *
    * @returns {Promise<ITestimonial[]>} List of testimonials.
-   * @author Brian Kariuki <bkariuki@hotmail.com>
+   * @name Brian Kariuki <bkariuki@hotmail.com>
    */
   const getTestimonials = async (source: string): Promise<ITestimonial[]> => {
     try {
@@ -19,7 +19,10 @@ export default () => {
       // Check if the request was successful and return the data.
       if (response.ok) {
         // Get the data from the API.
-        return JSON.parse(await response.json());
+        const data = await response.text();
+
+        // Return the parsed data.
+        return JSON.parse(data.trim());
       }
 
       // If there was an error, throw an exception.
@@ -30,28 +33,14 @@ export default () => {
       // Return an empty array.
       return [
         {
-          id: 1,
-          message: 'This is the message',
-          author: 'Brian',
-          author_profession: 'coder',
-          created_at: new Date().toISOString(),
-          updated_at: null,
+          quote: 'I want to tell you…',
+          name: 'Jody Conley',
+          title: 'Calculus Teacher',
         },
         {
-          id: 2,
-          message: 'This is the message',
-          author: 'Nick',
-          author_profession: 'coder',
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        },
-        {
-          id: 3,
-          message: 'This is the message',
-          author: 'Lawrence',
-          author_profession: 'manager',
-          created_at: new Date().toISOString(),
-          updated_at: null,
+          quote: 'Brian K is great…',
+          name: 'Ted',
+          title: 'Business owner',
         },
       ];
     }
@@ -64,7 +53,7 @@ export default () => {
    * @param {ITestimonial[]} testimonials Testimonials to post.
    *
    * @returns {Promise<void>}
-   * @author Brian Kariuki <bkariuki@hotmail.com>
+   * @name Brian Kariuki <bkariuki@hotmail.com>
    */
   const setTestimonials = async (): // source: string,
   // testimonials: ITestimonial[]

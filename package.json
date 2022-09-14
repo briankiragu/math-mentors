@@ -8,7 +8,6 @@
     "build": "vite build",
     "serve": "vite preview --host"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
