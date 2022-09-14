@@ -12,7 +12,7 @@
       class="dialog-content"
       modal-mode="mega"
     >
-      <form method="dialog" @click.prevent="handleSubmit">
+      <form method="dialog" @submit.prevent="handleSubmit">
         <!-- Dialog header -->
         <header class="dialog-content__header">
           <h3>Update Testimonials</h3>
