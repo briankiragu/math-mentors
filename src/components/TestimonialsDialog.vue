@@ -187,6 +187,8 @@ button:focus {
 }
 
 .dialog-trigger {
+  z-index: 50;
+
   background-color: #1d4ed8;
 
   color: #eff6ff;
