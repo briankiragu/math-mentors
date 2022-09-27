@@ -159,7 +159,7 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
 const handleSubmit = async (): Promise<void> => {
   // Make the request to the API.
   await setTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=setconfig&config=testimonials`,
+    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=saveconfig&config=testimonials`,
     testimonials.value
   );
 
