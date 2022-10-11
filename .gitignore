@@ -10,5 +10,8 @@ dist
 # OS files
 .DS_Store
 
+# Server files
+server
+
 # Environment files
 .env*
