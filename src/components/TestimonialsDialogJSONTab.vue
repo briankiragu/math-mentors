@@ -31,7 +31,15 @@ const emit = defineEmits<{
   (e: 'update:testimonials', value: ITestimonial[]): void;
 }>();
 
-const handleInput = (e: Event) => {
+/**
+ * When a user types in the textarea, parse the JSON and emit.
+ *
+ * @param {Event} e Event object when user submits
+ *
+ * @returns {void}
+ * @author Nick Mwalo <mwalonick@gmail.com>
+ */
+const handleInput = (e: Event): void => {
   // Get the input from the event target.
   const input = (e.target as HTMLTextAreaElement).value;
 

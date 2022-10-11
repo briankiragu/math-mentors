@@ -1,14 +1,15 @@
-export interface ITestimonial {
-  id: number;
-  message: string;
-  author: string;
-  author_profession: string;
-  created_at: string;
-  updated_at: null | string;
+// eslint-disable-next-line no-shadow
+export enum ITestimonialFields {
+  Name = 'name',
+  Title = 'title',
+  Quote = 'quote',
 }
 
-export enum ITestimonialFields {
-  author = 'author',
-  author_profession = 'author_profession',
-  message = 'message',
+export interface ITestimonial {
+  id?: number;
+  quote: string;
+  name: string;
+  title: string;
+  created_at?: string;
+  updated_at?: null | string;
 }

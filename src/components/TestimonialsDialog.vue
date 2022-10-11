@@ -12,7 +12,7 @@
       class="dialog-content"
       modal-mode="mega"
     >
-      <form method="dialog">
+      <form method="dialog" @submit.prevent="handleSubmit">
         <!-- Dialog header -->
         <header class="dialog-content__header">
           <h3>Update Testimonials</h3>
@@ -27,7 +27,7 @@
         </header>
 
         <!-- Dialog content -->
-        <article class="dialog-content__body">
+        <article v-if="hasTestimonials" class="dialog-content__body">
           <!-- Tab headings -->
           <nav class="dialog-content__body__tab">
             <button
@@ -87,14 +87,14 @@
 <script setup lang="ts">
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import { onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
 import useData from '@/composables/useData';
 import { ITestimonial } from '@/interfaces';
 
 // Import methods for fetching data.
-const { getTestimonials } = useData();
+const { getTestimonials, setTestimonials } = useData();
 
 // We want to get a template reference to the dialog.
 const dialogEl = ref<HTMLDialogElement | null>(null);
@@ -105,15 +105,31 @@ const activeTab = ref<string>('HTML');
 // List of testimonials to edit.
 const testimonials = ref<ITestimonial[]>([]);
 
+// Check whether there are testimonials to edit.
+const hasTestimonials = computed<boolean>(() => testimonials.value.length > 0);
+
 /**
  * Show the dialog.
  *
- * @returns {void}
+ * @returns {Promise<void>}
  * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
-const showDialog = (): void => {
-  // If the dialog is closed, open it.
-  dialogEl.value?.showModal();
+const showDialog = async (): Promise<void> => {
+  // When the component is mounted, fetch the testimonials.
+  // Get the testimonials from the source (file or API).
+  testimonials.value = await getTestimonials(
+    `${import.meta.env.VITE_API_ENDPOINT}?cmd=getconfig&config=testimonials`
+  );
+
+  // If the testimonials are not empty.
+  if (hasTestimonials.value) {
+    // If the dialog is closed, open it.
+    dialogEl.value?.showModal();
+  } else {
+    // eslint-disable-next-line no-alert
+    window.alert(`Error: unable to get data from the web server.`);
+  }
 };
 
 /**
@@ -123,6 +139,7 @@ const showDialog = (): void => {
  *
  * @returns {void}
  * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const closeDialog = (action: 'close' | 'cancel'): void => {
   // If the dialog is open, close it.
@@ -135,18 +152,35 @@ const closeDialog = (action: 'close' | 'cancel'): void => {
  * @param {string} tab The tab to activate.
  * @returns {void}
  * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
   activeTab.value = tab;
 };
 
-// When the component is mounted, fetch the testimonials.
-onMounted(async () => {
-  // Get the testimonials from the source (file or API).
-  testimonials.value = await getTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
-  );
-});
+/**
+ * Handle when a user submits the form. Submit the updated testimonials to the API.
+ *
+ * @returns {Promise<void>}
+ * @author Brian Kariuki <bkariuki@hotmail.com>
+ * @author Nick Mwalo <mwalonick@gmail.com>
+ */
+const handleSubmit = async (): Promise<void> => {
+  // Ensure the testimonials are not null.
+  if (testimonials.value) {
+    // Update the testimonials.
+    await setTestimonials(
+      `${import.meta.env.VITE_API_ENDPOINT}?cmd=saveconfig&config=testimonials`,
+      testimonials.value
+    );
+
+    // Close the dialog.
+    closeDialog('close');
+
+    // Reload the page.
+    window.location.reload();
+  }
+};
 </script>
 
 <style scoped>
@@ -168,6 +202,8 @@ button:focus {
 }
 
 .dialog-trigger {
+  z-index: 50;
+
   background-color: #1d4ed8;
 
   color: #eff6ff;
