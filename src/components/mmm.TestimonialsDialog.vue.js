@@ -110,6 +110,18 @@ const TestimonialsDialog = {
         window.location.reload();
       }
     };
+
+    // Return the methods and data.
+    return {
+      dialogEl,
+      activeTab,
+      testimonials,
+      hasTestimonials,
+      showDialog,
+      closeDialog,
+      handleTabClick,
+      handleSubmit,
+    };
   },
 
   template: `

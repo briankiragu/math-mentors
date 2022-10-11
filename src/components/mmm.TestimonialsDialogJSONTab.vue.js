@@ -25,6 +25,9 @@ const TestimonialsDialogJSONTab = {
       // Emit the data to the parent.
       emit('update:testimonials', data);
     };
+
+    // Return the methods and data.
+    return { handleInput };
   },
 
   template: `

@@ -101,6 +101,9 @@ const TestimonialsDialogFormTab = {
         emit('update:testimonials', clone);
       }
     };
+
+    // Return the methods and data.
+    return { handleNewTestimonial, handleDeleteTestimonial, handleInput };
   },
 
   template: `
