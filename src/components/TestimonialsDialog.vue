@@ -27,7 +27,7 @@
         </header>
 
         <!-- Dialog content -->
-        <article class="dialog-content__body">
+        <article v-if="hasTestimonials" class="dialog-content__body">
           <!-- Tab headings -->
           <nav class="dialog-content__body__tab">
             <button
@@ -87,7 +87,7 @@
 <script setup lang="ts">
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import TestimonialsDialogFormTab from '@/components/TestimonialsDialogFormTab.vue';
 import TestimonialsDialogJSONTab from '@/components/TestimonialsDialogJSONTab.vue';
 import useData from '@/composables/useData';
@@ -105,6 +105,9 @@ const activeTab = ref<string>('HTML');
 // List of testimonials to edit.
 const testimonials = ref<ITestimonial[]>([]);
 
+// Check whether there are testimonials to edit.
+const hasTestimonials = computed<boolean>(() => testimonials.value.length > 0);
+
 /**
  * Show the dialog.
  *
@@ -116,11 +119,17 @@ const showDialog = async (): Promise<void> => {
   // When the component is mounted, fetch the testimonials.
   // Get the testimonials from the source (file or API).
   testimonials.value = await getTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=getconfig&config=testimonials`
+    `${import.meta.env.VITE_API_ENDPOINT}?cmd=getconfig&config=testimonials`
   );
 
-  // If the dialog is closed, open it.
-  dialogEl.value?.showModal();
+  // If the testimonials are not empty.
+  if (hasTestimonials.value) {
+    // If the dialog is closed, open it.
+    dialogEl.value?.showModal();
+  } else {
+    // eslint-disable-next-line no-alert
+    window.alert(`Error: unable to get data from the web server.`);
+  }
 };
 
 /**
@@ -157,14 +166,20 @@ const handleTabClick = (tab: 'HTML' | 'JSON'): void => {
  * @author Nick Mwalo <mwalonick@gmail.com>
  */
 const handleSubmit = async (): Promise<void> => {
-  // Make the request to the API.
-  await setTestimonials(
-    `https://new.mastermathmentor.com/mmm/admin_cmd.ashx?cmd=setconfig&config=testimonials`,
-    testimonials.value
-  );
+  // Ensure the testimonials are not null.
+  if (testimonials.value) {
+    // Update the testimonials.
+    await setTestimonials(
+      `${import.meta.env.VITE_API_ENDPOINT}?cmd=saveconfig&config=testimonials`,
+      testimonials.value
+    );
 
-  // Make sure the dialog is closed.
-  closeDialog('close');
+    // Close the dialog.
+    closeDialog('close');
+
+    // Reload the page.
+    window.location.reload();
+  }
 };
 </script>
 

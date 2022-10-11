@@ -4,6 +4,12 @@
 import { ITestimonial } from '@/interfaces';
 
 export default () => {
+  // Request headers
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  });
+
   /**
    * Return the list of testimonials from the API.
    *
@@ -15,7 +21,7 @@ export default () => {
   const getTestimonials = async (endpoint: string): Promise<ITestimonial[]> => {
     try {
       // Make the request.
-      const response = await fetch(endpoint);
+      const response = await fetch(endpoint, { headers });
 
       // Check if the request was successful and return the data.
       if (response.ok) {
@@ -32,18 +38,7 @@ export default () => {
       console.error((error as Error).message);
 
       // Return an empty array.
-      return [
-        {
-          quote: 'I want to tell you…',
-          name: 'Jody Conley',
-          title: 'Calculus Teacher',
-        },
-        {
-          quote: 'Brian K is great…',
-          name: 'Ted',
-          title: 'Business owner',
-        },
-      ];
+      return [];
     }
   };
 
@@ -63,7 +58,8 @@ export default () => {
     try {
       // Make the request.
       const response = await fetch(endpoint, {
-        method: 'PUT',
+        method: 'POST',
+        headers,
         body: JSON.stringify(testimonials),
       });
 
