@@ -108,7 +108,7 @@ const TestimonialsDialogFormTab = {
       <!-- Button to add a testimonial. -->
       <button
         class="form-tab__new-testimonial"
-        @click.prevent="handleNewTestimonial"
+        @click="handleNewTestimonial"
       >
         Add a testimonial
       </button>
@@ -124,7 +124,7 @@ const TestimonialsDialogFormTab = {
           type="button"
           class="form-tab__testimonial__delete"
           aria-label="Close"
-          @click.prevent="handleDeleteTestimonial(index)"
+          @click="handleDeleteTestimonial(index)"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
