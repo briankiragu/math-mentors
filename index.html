@@ -35,9 +35,6 @@
       crossorigin="anonymous"
     />
 
-    <!-- Main styles -->
-    <link rel="stylesheet" href="./src/styles/index.css" />
-
     <!-- Global variabes. -->
     <script>
       const urlimg = '/mmm/images';
@@ -51,8 +48,17 @@
       const enableedit = true; // enables page edit features
     </script>
 
+    <!-- Import Vue from CDN -->
+    <script
+      defer
+      src="https://unpkg.com/vue@3.2.40/dist/vue.global.prod.js"
+    ></script>
+
     <!-- Main script. -->
-    <script type="module" src="./src/main.ts" defer></script>
+    <script defer type="module" src="./src/mmm.main.js"></script>
+
+    <!-- Main styles -->
+    <link rel="stylesheet" href="./src/styles/index.css" />
   </head>
 
   <body>
