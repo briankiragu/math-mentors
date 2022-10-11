@@ -1,12 +1,4 @@
-const path = require('path');
-
 module.exports = {
-  settings: {
-    alias: {
-      map: [['@', path.resolve(__dirname, 'src')]],
-    },
-  },
-
   env: {
     browser: true,
     es2021: true,
@@ -33,7 +25,7 @@ module.exports = {
       'error',
       'ignorePackages',
       {
-        js: 'never',
+        js: 'always',
         ts: 'never',
         jsx: 'never',
         tsx: 'never',

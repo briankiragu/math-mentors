@@ -14,18 +14,6 @@
       href="./src/assets/favicon.ico"
       type="image/x-icon"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      href="./src/assets/favicon-32x32.png"
-      sizes="32x32"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      href="./src/assets/favicon-16x16.png"
-      sizes="16x16"
-    />
 
     <!-- Font Awesome -->
     <link
@@ -34,9 +22,6 @@
       integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
       crossorigin="anonymous"
     />
-
-    <!-- Main styles -->
-    <link rel="stylesheet" href="./src/styles/index.css" />
 
     <!-- Global variabes. -->
     <script>
@@ -51,8 +36,17 @@
       const enableedit = true; // enables page edit features
     </script>
 
+    <!-- Import Vue from CDN -->
+    <script
+      defer
+      src="https://unpkg.com/vue@3.2.40/dist/vue.global.prod.js"
+    ></script>
+
     <!-- Main script. -->
-    <script type="module" src="./src/main.ts" defer></script>
+    <script defer type="module" src="./src/mmm.main.js"></script>
+
+    <!-- Main styles -->
+    <link rel="stylesheet" href="./src/styles/index.css" />
   </head>
 
   <body>
