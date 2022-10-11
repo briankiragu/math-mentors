@@ -6,8 +6,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [vue()],
   build: {
-    sourcemap: true,
+    minify: false,
     outDir: path.resolve(__dirname, './dist'),
+    sourcemap: true,
   },
   resolve: {
     extensions: ['.json', '.js', '.mjs', '.ts', '.jsx', '.tsx', '.vue'],
