@@ -38,18 +38,7 @@ export default () => {
       console.error((error as Error).message);
 
       // Return an empty array.
-      return [
-        {
-          quote: 'I want to tell you…',
-          name: 'Jody Conley',
-          title: 'Calculus Teacher',
-        },
-        {
-          quote: 'Brian K is great…',
-          name: 'Ted',
-          title: 'Business owner',
-        },
-      ];
+      return [];
     }
   };
 
@@ -69,7 +58,7 @@ export default () => {
     try {
       // Make the request.
       const response = await fetch(endpoint, {
-        method: 'PUT',
+        method: 'POST',
         headers,
         body: JSON.stringify(testimonials),
       });
