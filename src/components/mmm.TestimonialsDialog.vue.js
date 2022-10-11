@@ -132,7 +132,7 @@ const TestimonialsDialog = {
             <h3>Update Testimonials</h3>
             <button @click="closeDialog('close')">
               <img
-                src="../src/assets/icons/close.svg"
+                src="../assets/icons/close.svg"
                 alt="Close icon"
                 width="25"
                 height="25"
