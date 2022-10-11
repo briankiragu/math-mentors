@@ -115,7 +115,7 @@ const TestimonialsDialog = {
   template: `
     <div>
       <!-- Dialog trigger -->
-      <button type="button" class="dialog-trigger" @click="showDialog">
+      <button type="button" class="dialog-trigger" @click.prevent="showDialog()">
         Edit
       </button>
 
@@ -130,9 +130,9 @@ const TestimonialsDialog = {
           <!-- Dialog header -->
           <header class="dialog-content__header">
             <h3>Update Testimonials</h3>
-            <button @click="closeDialog('close')">
+            <button @click.prevent="closeDialog('close')">
               <img
-                src="../assets/icons/close.svg"
+                src="./src/assets/icons/close.svg"
                 alt="Close icon"
                 width="25"
                 height="25"
@@ -147,14 +147,14 @@ const TestimonialsDialog = {
               <button
                 class="dialog-content__body__tab-item"
                 :class="{ active: activeTab === 'HTML' }"
-                @click="handleTabClick('HTML')"
+                @click.prevent="handleTabClick('HTML')"
               >
                 HTML
               </button>
               <button
                 class="dialog-content__body__tab-item"
                 :class="{ active: activeTab === 'JSON' }"
-                @click="handleTabClick('JSON')"
+                @click.prevent="handleTabClick('JSON')"
               >
                 JSON
               </button>
@@ -179,7 +179,7 @@ const TestimonialsDialog = {
               <button
                 type="reset"
                 class="dialog-content__footer-cancel"
-                @click="closeDialog('cancel')"
+                @click.prevent="closeDialog('cancel')"
               >
                 Cancel
               </button>
