@@ -1,8 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-import { ITestimonial } from '@/interfaces';
-
 export default () => {
   // Request headers
   const headers = new Headers({
@@ -18,7 +13,7 @@ export default () => {
    * @returns {Promise<ITestimonial[]>} List of testimonials.
    * @author Brian Kariuki <bkariuki@hotmail.com>
    */
-  const getTestimonials = async (endpoint: string): Promise<ITestimonial[]> => {
+  const getTestimonials = async (endpoint) => {
     try {
       // Make the request.
       const response = await fetch(endpoint, { headers });
@@ -35,7 +30,7 @@ export default () => {
       // If there was an error, throw an exception.
       throw new Error('Error fetching the testimonials...');
     } catch (error) {
-      console.error((error as Error).message);
+      console.error(error.message);
 
       // Return an empty array.
       return [];
@@ -51,10 +46,7 @@ export default () => {
    * @returns {Promise<void>}
    * @author Brian Kariuki <bkariuki@hotmail.com>
    */
-  const setTestimonials = async (
-    endpoint: string,
-    testimonials: ITestimonial[]
-  ): Promise<void> => {
+  const setTestimonials = async (endpoint, testimonials) => {
     try {
       // Make the request.
       const response = await fetch(endpoint, {
@@ -75,7 +67,7 @@ export default () => {
       // If there was an error, throw an exception.
       throw new Error('Error posting the testimonials...');
     } catch (error) {
-      console.error((error as Error).message);
+      console.error(error.message);
     }
   };
 
