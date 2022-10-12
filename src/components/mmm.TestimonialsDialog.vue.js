@@ -127,7 +127,7 @@ const TestimonialsDialog = {
   template: `
     <div>
       <!-- Dialog trigger -->
-      <button type="button" class="dialog-trigger" @click.prevent="showDialog()">
+      <button type="button" class="button dialog-trigger" @click.prevent="showDialog()">
         Edit
       </button>
 
@@ -142,7 +142,7 @@ const TestimonialsDialog = {
           <!-- Dialog header -->
           <header class="dialog-content__header">
             <h3>Update Testimonials</h3>
-            <button @click.prevent="closeDialog('close')">
+            <button class="button" @click.prevent="closeDialog('close')">
               <img
                 src="./src/assets/icons/close.svg"
                 alt="Close icon"
@@ -157,14 +157,14 @@ const TestimonialsDialog = {
             <!-- Tab headings -->
             <nav class="dialog-content__body__tab">
               <button
-                class="dialog-content__body__tab-item"
+                class="button dialog-content__body__tab-item"
                 :class="{ active: activeTab === 'HTML' }"
                 @click.prevent="handleTabClick('HTML')"
               >
                 HTML
               </button>
               <button
-                class="dialog-content__body__tab-item"
+                class="button dialog-content__body__tab-item"
                 :class="{ active: activeTab === 'JSON' }"
                 @click.prevent="handleTabClick('JSON')"
               >
@@ -190,14 +190,14 @@ const TestimonialsDialog = {
             <menu class="dialog-content__footer">
               <button
                 type="reset"
-                class="dialog-content__footer-cancel"
+                class="button dialog-content__footer-cancel"
                 @click.prevent="closeDialog('cancel')"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                class="dialog-content__footer-confirm"
+                class="button dialog-content__footer-confirm"
                 value="confirm"
               >
                 Update testimonials
