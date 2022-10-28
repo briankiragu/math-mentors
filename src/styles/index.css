@@ -16,8 +16,6 @@ html:has(dialog[open]) {
   border: 2px solid transparent;
   border-radius: 8px;
 
-  padding: 0.7rem 1.4rem;
-
   font-size: 0.9rem;
   font-weight: 400;
 
